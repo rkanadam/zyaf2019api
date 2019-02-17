@@ -17,6 +17,8 @@
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
   },
   "dependencies": {
+    "boom": "^7.3.0",
+    "google-auth-library": "^3.1.0",
     "hapi": "^17.2.3"
   },
   "devDependencies": {
