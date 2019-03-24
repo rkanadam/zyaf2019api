@@ -1,6 +1,379 @@
 {
-  "gayatri_chanting": {
-    "name": "Gayatri Chanting",
-    "description": "Chant Gayatri everyday"
-  }
+  "dailyPrayersAndMeditation": [
+    {
+      "id": "3TimeChanting",
+      "text": "Chant prayer 3 times",
+      "points": 3
+    },
+    {
+      "id": "9TimeChanting",
+      "text": "Chant prayer 9 times",
+      "points": 9
+    },
+    {
+      "id": "12TimeChanting",
+      "text": "Chant prayer 12 times",
+      "points": 12
+    },
+    {
+      "id": "108TimeChanting",
+      "text": "Chant prayer 108 times",
+      "points": 90
+    },
+    {
+      "id": "3MinuteIntrospection",
+      "text": "Meditation/Introspection for 3 minutes",
+      "points": 3
+    },
+    {
+      "id": "9MinuteIntrospection",
+      "text": "Meditation/Introspection for 9 minutes",
+      "points": 9
+    },
+    {
+      "id": "12MinuteIntrospection",
+      "text": "Meditation/Introspection for 12 minutes",
+      "points": 12
+    },
+    {
+      "id": "108MinuteIntrospection",
+      "text": "Meditation/Introspection for 108 minutes",
+      "points": 90
+    }
+  ],
+  "healthyLiving": [
+    {
+      "id": "ateOnlyTillHungry",
+      "text": "Ate only while hungry/until full",
+      "points": 3
+    },
+    {
+      "id": "leftPlateClean",
+      "text": "Left a clean plate",
+      "points": 3
+    },
+    {
+      "id": "boughtFreshFood",
+      "text": "Bought fresh, local produce instead of processed food",
+      "points": 5
+    },
+    {
+      "id": "10MinuteExercise",
+      "text": "10 minute light stretch or yoga",
+      "points": 10
+    },
+    {
+      "id": "30MinuteExercise",
+      "text": "30 minute workout",
+      "points": 30
+    },
+    {
+      "id": "60MinuteExercise",
+      "text": "60 minute workout",
+      "points": 60
+    },
+    {
+      "id": "90MinuteExercise",
+      "text": "90 minute workout",
+      "points": 90
+    },
+    {
+      "id": "hike",
+      "text": "Did a hike or outdoor activities",
+      "points": 90
+    },
+    {
+      "id": "ateLowCarbMeal",
+      "text": "Ate a low sugar or carbohydrate meal",
+      "points": 10
+    },
+    {
+      "id": "ateGreenMeal",
+      "text": "Ate a green meal",
+      "points": 10
+    },
+    {
+      "id": "resistedUrgeToOvereat",
+      "text": "Resisted the urge to overeat",
+      "points": 5
+    },
+    {
+      "id": "fastedForTheHalfDay",
+      "text": "Fasted for half a day",
+      "points": 15
+    },
+    {
+      "id": "fastedForTheDay",
+      "text": "Fasted for a day",
+      "points": 30
+    },
+    {
+      "id": "otherHealthyEating",
+      "text": "Other - Healthy Eating Practice",
+      "points": 10
+    },
+    {
+      "id": "sharedAMealWithALovedOne",
+      "text": "Shared a meal with loved one",
+      "points": 10
+    },
+    {
+      "id": "playedAMealWithALovedOne",
+      "text": "Played a game with loved one",
+      "points": 10
+    },
+    {
+      "id": "enjoyedFamilyFriendsOuting",
+      "text": "Enjoyed family/friends outing",
+      "points": 15
+    },
+    {
+      "id": "differentiateWorkAndFamilyLife",
+      "text": "Differentiate work life from personal life(no emails or calls during family time)",
+      "points": 20
+    }
+  ],
+  "serviceToOthers": [
+    {
+      "id": "aidedNeighborhoodEnhancement",
+      "text": "Aided with neighborhood enhancement",
+      "points": 20
+    },
+    {
+      "id": "helpedThoseWithSpecialNeeds",
+      "text": "Helped those with special needs",
+      "points": 30
+    },
+    {
+      "id": "visitedSeniorCitizens",
+      "text": "Visited senior citizens",
+      "points": 30
+    },
+    {
+      "id": "assistedHomelessOrHungry",
+      "text": "Assisted homeless and/or hungry",
+      "points": 40
+    },
+    {
+      "id": "benefittedTheEnvironment",
+      "text": "Benefitted the environment",
+      "points": 30
+    },
+    {
+      "id": "aidedImmigrantRefugeeCommunity",
+      "text": "Aided immigrant/refugee community",
+      "points": 30
+    },
+    {
+      "id": "helpedAnimals",
+      "text": "Helped animals",
+      "points": 30
+    },
+    {
+      "id": "mentoredOthers",
+      "text": "Mentored Others",
+      "points": 10
+    },
+    {
+      "id": "donated",
+      "text": "Donated (blood, tech, care packages, etc)",
+      "points": 15
+    },
+    {
+      "id": "minorService",
+      "text": "Minor Service",
+      "points": 15
+    },
+    {
+      "id": "majorService",
+      "text": "Major Service",
+      "points": 30
+    }
+  ],
+  "goGreen": [
+    {
+      "id": "usedReusableCutlery",
+      "text": "Used reusable cutlery and reusable metal straws",
+      "points": 5
+    },
+    {
+      "id": "usedClothNapkins",
+      "text": "Used cloth napkins/hand towels",
+      "points": 5
+    },
+    {
+      "id": "usedReusableWaterBottles",
+      "text": "Used reusable water bottles",
+      "points": 5
+    },
+    {
+      "id": "usedReusableShoppingBags",
+      "text": "Used reusable cloth shopping bags",
+      "points": 5
+    },
+    {
+      "id": "madeAHappyCleanPlate",
+      "text": "Made a happy, clean plate",
+      "points": 3
+    },
+    {
+      "id": "startedACompostBin",
+      "text": "Started a compost bin",
+      "points": 40
+    },
+    {
+      "id": "switchedNormalLightsToLED",
+      "text": "Switched normal light bulbs with LED/CFL",
+      "points": 50
+    },
+    {
+      "id": "minorGoGreenService",
+      "text": "Other - Minor Go Green Sadhana",
+      "points": 5
+    },
+    {
+      "id": "majorGoGreenService",
+      "text": "Other - Major Go Green Sadhana",
+      "points": 20
+    }
+  ],
+  "cod": [
+    {
+      "id": "codAteOnlyWhileHungry",
+      "text": "Ate only while hungry/until full",
+      "points": 3
+    },
+    {
+      "id": "codLeftACleanPlate",
+      "text": "Left a clean plate",
+      "points": 3
+    },
+    {
+      "id": "codBoughtFreshLocalProduce",
+      "text": "Bought fresh, local produce instead of processed food",
+      "points": 5
+    },
+    {
+      "id": "avoidUnnecessaryPurchases",
+      "text": "Avoided unnecessary purchases",
+      "points": 3
+    },
+    {
+      "id": "putMoneyTowardsPersonalEducation",
+      "text": "Put money towards personal education/skill development",
+      "points": 5
+    },
+    {
+      "id": "replacedRestaurantMealWithHomeCookedMeal",
+      "text": "Replaced restaurant meal with home-cooked meal",
+      "points": 10
+    },
+    {
+      "id": "madeAWeeklyMontlyBudget",
+      "text": "Made a weekly/monthly budget",
+      "points": 20
+    },
+    {
+      "id": "adheredToWeeklyBudget",
+      "text": "Adhered to weekly budget",
+      "points": 30
+    },
+    {
+      "id": "adheredToMonthlyBudget",
+      "text": "Adhered to monthly budget",
+      "points": 40
+    },
+    {
+      "id": "reducedOverallTimeSpentOnSocialMedia",
+      "text": "Reduced overall time spent on social media",
+      "points": 10
+    },
+    {
+      "id": "limitedTVWebTime",
+      "text": "Limited TV time/Web time",
+      "points": 10
+    },
+    {
+      "id": "utilizedFreeTimeEffectively",
+      "text": "Utilized free time effectively (learned something new, reading , listening to audio book, playing musical instrument, singing bhajans, Reading Sai Literature, Introspection, etc.)",
+      "points": 20
+    },
+    {
+      "id": "madeADailyToDoList",
+      "text": "Made a daily/weekly to-do list",
+      "points": 20
+    },
+    {
+      "id": "adheredToADailySchedule",
+      "text": "Adhered to daily schedule",
+      "points": 2
+    },
+    {
+      "id": "adheredToAWeeklySchedule",
+      "text": "Adhered to weekly schedule",
+      "points": 30
+    },
+    {
+      "id": "sleepOnlyUntilRested",
+      "text": "Sleep only until rested",
+      "points": 5
+    },
+    {
+      "id": "avoidPhysicalViolence",
+      "text": "Avoid physical violence",
+      "points": 10
+    },
+    {
+      "id": "avoidVerbalCriticism",
+      "text": "Avoid verbal criticism",
+      "points": 10
+    },
+    {
+      "id": "avoidMentalCriticism",
+      "text": "Avoid mental criticism",
+      "points": 20
+    },
+    {
+      "id": "maintainedControlOverEmotions",
+      "text": "Maintained control over emotions the entire day",
+      "points": 20
+    },
+    {
+      "id": "spokeSoftlyAndSweetlyTheEntireDay",
+      "text": "Spoke softly and sweetly the entire day",
+      "points": 40
+    },
+    {
+      "id": "activelyTransformedAngerIntoLove",
+      "text": "Actively work to transform anger into love/forgiveness",
+      "points": 40
+    }
+  ],
+  "saiLiterature": [
+    {
+      "id": "read3Paragraphs",
+      "text": "Read 3 paragraphs of Sai Literature",
+      "points": 5
+    },
+    {
+      "id": "read6Paragraphs",
+      "text": "Read 6 paragraphs of Sai Literature",
+      "points": 10
+    },
+    {
+      "id": "readHalfAChapter",
+      "text": "Read half a chapter",
+      "points": 30
+    },
+    {
+      "id": "readOneChapter",
+      "text": "Read one chapter",
+      "points": 60
+    },
+    {
+      "id": "readTwoChapters",
+      "text": "Read two chapters",
+      "points": 90
+    }
+  ]
 }

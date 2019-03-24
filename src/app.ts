@@ -184,7 +184,8 @@ const init = async () => {
                     CREATE TABLE IF NOT EXISTS SADHANA (
                       NAME TEXT NOT NULL,
                       DESCRIPTION TEXT DEFAULT NULL,
-                      POINTS NUMERIC  NOT NULL
+                      POINTS NUMERIC  NOT NULL,
+                      HREF TEXT NOT NULL
                     )`.trim());
                 db.run(`
                     CREATE TABLE  IF NOT EXISTS MY_SADHANAS (
