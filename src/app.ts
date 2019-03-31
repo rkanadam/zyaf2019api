@@ -1,5 +1,5 @@
 import { Request, ResponseToolkit, Server } from "hapi";
-import { isEmpty } from "lodash";
+import { each, isEmpty } from "lodash";
 import { config } from "node-config-ts";
 import Boom = require("boom");
 
@@ -9,6 +9,7 @@ const db = new sqlite3.Database(config.sqlliteFilePath);
 
 const CLIENT_ID = "172433576772-crg5vtfavpqsbn4mitk7ffl2s73o93fc.apps.googleusercontent.com";
 
+const sadhanas = require("../sadhana.json");
 
 export const server: Server = new Server({
     port: 3000,
@@ -36,6 +37,7 @@ server.auth.scheme("google", (server: Server) => {
                     throw Boom.unauthorized(err);
                 });
             request.yar.set("u", payload["email"]);
+            request.yar.set("p", payload);
             return h.authenticated({credentials: {user: request.yar.get("u")}});
         }
 
@@ -51,8 +53,18 @@ server.route({
     options: {
         cors: true
     },
-    handler: (request, h) => {
-        return h.response({ok: true});
+    handler: async (request, h) => {
+        const payload = request.yar.get("p");
+        const stmt = db.prepare("INSERT OR REPLACE INTO USERS (EMAIL, SIGNIN_PAYLOAD) VALUES(?, ?)");
+        stmt.run([request.auth.credentials.user, JSON.stringify(payload)]);
+        return new Promise((resolve, reject) => {
+            stmt.finalize((err: any) => {
+                if (err) {
+                    throw Boom.internal(err);
+                }
+                resolve(h.response({ok: true}));
+            });
+        });
     }
 });
 
@@ -70,6 +82,38 @@ server.route({
         });
     }
 });
+
+server.route({
+    method: "GET",
+    path: "/sadhanas/top",
+    handler: (request, h) => {
+        return new Promise((resolve, reject) => {
+            db.all(" SELECT SUM(SADHANA.POINTS) AS POINTS, USERS.* from STATS, MY_SADHANAS, SADHANA, USERS  WHERE STATS.EMAIL = MY_SADHANAS.EMAIL AND STATS.SADHANA_ID = MY_SADHANAS.SADHANA_ID AND SADHANA.ROWID = MY_SADHANAS.SADHANA_ID AND MY_SADHANAS.EMAIL = USERS.EMAIL GROUP BY MY_SADHANAS.EMAIL ORDER BY POINTS DESC LIMIT 10", (err: any, rows: any[]) => {
+                if (err) {
+                    throw Boom.internal(err);
+                }
+                resolve(h.response(rows));
+            });
+        });
+    }
+});
+
+server.route({
+    method: "GET",
+    path: "/sadhanas",
+    handler: (request, h) => {
+        return new Promise((resolve, reject) => {
+            db.all(" SELECT ST.*, SADHANA.ROWID AS 'ROWID', SADHANA.*, MY_SADHANAS.* FROM SADHANA LEFT OUTER JOIN MY_SADHANAS ON SADHANA.ROWID = MY_SADHANAS.SADHANA_ID AND MY_SADHANAS.EMAIL = ? LEFT OUTER JOIN (select STATS.EMAIL, COUNT(SADHANA_ID) AS COUNT, SADHANA_ID from STATS GROUP BY EMAIL, SADHANA_ID) ST ON ST.EMAIL = MY_SADHANAS.EMAIL AND ST.SADHANA_ID = MY_SADHANAS.SADHANA_ID ORDER BY MY_SADHANAS.EMAIL DESC, SADHANA.DESCRIPTION ASC",
+                [request.auth.credentials.user], (err: any, rows: any[]) => {
+                    if (err) {
+                        throw Boom.internal(err);
+                    }
+                    resolve(h.response(rows));
+                });
+        });
+    }
+});
+
 
 server.route({
     method: "POST",
@@ -182,10 +226,11 @@ const init = async () => {
         db.serialize(() => {
                 db.run(`
                     CREATE TABLE IF NOT EXISTS SADHANA (
-                      NAME TEXT NOT NULL,
+                      NAME TEXT NOT NULL PRIMARY KEY,
                       DESCRIPTION TEXT DEFAULT NULL,
                       POINTS NUMERIC  NOT NULL,
-                      HREF TEXT NOT NULL
+                      HREF TEXT DEFAULT NULL,
+                      CATEGORY TEXT NOT NULL
                     )`.trim());
                 db.run(`
                     CREATE TABLE  IF NOT EXISTS MY_SADHANAS (
@@ -198,6 +243,21 @@ const init = async () => {
                       CREATED_AT TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                       SADHANA_ID INTEGER NOT NULL, FOREIGN KEY (SADHANA_ID) REFERENCES SADHANA(ROWID)
                     )`.trim());
+                db.run(`
+                    CREATE TABLE  IF NOT EXISTS USERS (
+                      EMAIL TEXT NOT NULL PRIMARY KEY,
+                      CREATED_AT TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                      SIGNIN_PAYLOAD TEXT NOT NULL
+                    )`.trim());
+
+                db.run("BEGIN TRANSACTION");
+                const stmt = db.prepare("INSERT OR REPLACE INTO SADHANA (ROWID, NAME, DESCRIPTION, POINTS, HREF, CATEGORY) VALUES(?, ?, ?, ?, ?, ?)");
+                each(sadhanas, (values, category) => {
+                    each(values, (sadhana) => {
+                        stmt.run([sadhana.rowid, sadhana.text, sadhana.text, sadhana.points, sadhana.text, category]);
+                    });
+                });
+                db.run("COMMIT");
                 resolve(true);
             }
         );

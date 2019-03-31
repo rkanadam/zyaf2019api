@@ -25,6 +25,7 @@
     "lodash": "^4.17.11",
     "node-config-ts": "^2.2.2",
     "sqlite3": "^4.0.6",
+    "typeorm": "^0.2.16",
     "yar": "^9.1.0"
   },
   "devDependencies": {
