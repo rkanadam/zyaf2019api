@@ -150,7 +150,7 @@ server.route({
         }
     },
     handler: (request, h) => {
-        const stmt = db.prepare("DELETE FROM MY_SADHANAS WHERE EMAIL = ? AND SADHANA = ?)");
+        const stmt = db.prepare("DELETE FROM MY_SADHANAS WHERE EMAIL = ? AND SADHANA = ?");
         stmt.run([request.auth.credentials.user, request.params.sadhanaId]);
         return new Promise((resolve, reject) => {
             stmt.finalize((err: any) => {
